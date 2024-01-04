@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DiceRollingGame</title>
+    <style>
+      #mydiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #p1,
+      #p2 {
+        text-align: center;
+        margin: 0 200px;
+        font-size: 40px;
+        color: rgb(255, 255, 0);
+      }
+
+      #mybtn {
+        color: #090909;
+        padding: 0.7em 1.7em;
+        font-size: 18px;
+        border-radius: 0.5em;
+        background: #d1fe2d;
+        cursor: pointer;
+        border: 1px solid #e8e8e8;
+        transition: all 0.3s;
+        box-shadow: 6px 6px 12px #0080a7, -6px -6px 12px #035c68;
+      }
+
+      #mybtn2 {
+        color: #090909;
+        padding: 0.7em 1.7em;
+        font-size: 18px;
+        border-radius: 0.5em;
+        background: #d1fe2d;
+        cursor: pointer;
+        border: 1px solid #e8e8e8;
+        transition: all 0.3s;
+        box-shadow: 6px 6px 12px #0080a7, -6px -6px 12px #035c68;
+      }
+
+      #mybtn,
+      #mybtn2 {
+        margin: 0 20px;
+      }
+
+      #mybtn:hover {
+        font-size: 20px;
+      }
+
+      #mybtn2:hover {
+        font-size: 20px;
+      }
+
+      body {
+        background-color: rgb(48, 238, 255);
+      }
+
+      mydiv2 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mydiv">
+      <p id="p1">
+        You rolled: <br />
+        <span id="dice1">0</span>
+        <br /><br /><br /><br />
+        Your score:<br />
+        <span id="span1">0</span>
+      </p>
+      <button id="mybtn">Roll!</button>
+      <button id="mybtn2">Reset</button>
+      <p id="p2">
+        Computer rolled: <br />
+        <span id="dice2">0</span><br /><br /><br /><br />
+        Computer's score:<br />
+        <span id="span2">0</span>
+      </p>
+    </div>
+    <script>
+      let roll = document.getElementById("mybtn");
+      let reset = document.getElementById("mybtn2");
+      let score_1 = document.getElementById("span1");
+      let score_2 = document.getElementById("span2"); //getting elements from html
+      let dice_1 = document.getElementById("dice1");
+      let dice_2 = document.getElementById("dice2");
+      reset.addEventListener("click", function reset() {
+        //making the reset button
+        score_1.innerHTML = 0;
+        score_2.innerHTML = 0;
+      });
+      roll.addEventListener("click", function roll() {
+        dice_1.innerHTML = Math.floor(Math.random() * 6) + 1; //making the roll button with math.random
+        dice_2.innerHTML = Math.floor(Math.random() * 6) + 1;
+        if (parseInt(dice_1.innerHTML) > parseInt(dice_2.innerHTML)) {
+          //checking which one is superior
+
+          score_1.innerHTML = parseInt(score_1.innerHTML) + 1;
+        } else {
+          score_2.innerHTML = parseInt(score_2.innerHTML) + 1;
+        }
+        if (parseInt(score_1.innerHTML) === 5) {
+          alert("User wins!");
+        }
+        if (parseInt(score_2.innerHTML) === 5) {
+          alert("Computer wins!");
+        }
+      });
+    </script>
+  </body>
+</html>
